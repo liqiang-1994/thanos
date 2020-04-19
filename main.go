@@ -1,19 +1,21 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
+	"github.com/liqiang/thanos/api"
+	"net/http"
+	"time"
 )
 
-
-
 func main() {
-	r := gin.Default()
-	r.GET("/echo/:name", func(c *gin.Context) {
-		age := c.Query("age")
-		name :=c.Param("name")
-		c.JSON(200, gin.H{
-			"OK": "Hi" + name + age,
-		})
-	})
-	r.Run()
+
+	routerInit := api.InitRouter()
+
+	s := &http.Server{
+		Addr:           ":8080",
+		Handler:        routerInit,
+		ReadTimeout:    10 * time.Second,
+		WriteTimeout:   10 * time.Second,
+		MaxHeaderBytes: 1 << 20,
+	}
+	s.ListenAndServe()
 }
