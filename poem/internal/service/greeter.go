@@ -3,8 +3,8 @@ package service
 import (
 	"context"
 
-	v1 "account/api/helloworld/v1"
-	"account/internal/biz"
+	v1 "poem/api/helloworld/v1"
+	"poem/internal/biz"
 )
 
 // GreeterService is a greeter service.

@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package api.comment.v1;
+
+option go_package = "comment/api/comment/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.comment.v1";
+
+service Comment {
+	rpc CreateComment (CreateCommentRequest) returns (CreateCommentReply);
+	rpc UpdateComment (UpdateCommentRequest) returns (UpdateCommentReply);
+	rpc DeleteComment (DeleteCommentRequest) returns (DeleteCommentReply);
+	rpc GetComment (GetCommentRequest) returns (GetCommentReply);
+	rpc ListComment (ListCommentRequest) returns (ListCommentReply);
+}
+
+message CreateCommentRequest {
+
+}
+message CreateCommentReply {}
+
+message UpdateCommentRequest {}
+message UpdateCommentReply {}
+
+message DeleteCommentRequest {}
+message DeleteCommentReply {}
+
+message GetCommentRequest {}
+message GetCommentReply {}
+
+message ListCommentRequest {}
+message ListCommentReply {}

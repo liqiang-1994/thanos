@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package api.account.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "account/api/account/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.account.v1";
+
+service User {
+	rpc Login (LoginRequest) returns (ResponseModel) {
+		option (google.api.http) = {
+			post: "/account/v1/login"
+			body: "*"
+		};
+	}
+	rpc UpdateUser (UpdateUserRequest) returns (ResponseModel) {
+		option (google.api.http) = {
+			put: "/account/v1/updateUser"
+			body: "*"
+		};
+	}
+	rpc FindUserById (GetUserRequest) returns (ResponseModel) {
+		option (google.api.http) = {
+			get: "/account/v1/findUser/{uid}"
+		};
+	}
+  rpc DeleteUser (DeleteUserRequest) returns (ResponseModel) {
+		option (google.api.http) = {
+			post: "/account/v1/deleteUser"
+			body: "*"
+		};
+	}
+}
+message ResponseModel {
+	int32 code = 1;
+	string reason = 2;
+	string message = 3;
+	map<string, string> metadata = 4;
+};
+message LoginRequest {
+	string   phone = 1;
+	string   code = 2;
+}
+
+message UpdateUserRequest {
+	int64    id = 1;
+	string   userName = 2;
+	string   address = 3;
+	string   phone = 4;
+	int32    gender = 5;
+	string   signature = 6;
+	string   avatar = 7;
+}
+
+message GetUserRequest {
+	string uid = 1;
+}
+
+message DeleteUserRequest {
+	string uid = 1;
+	string type = 2;
+	string reason = 3;
+}
